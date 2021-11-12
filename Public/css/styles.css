@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Nunito&family=Quicksand:wght@300&family=Raleway:ital,wght@1,500&display=swap');
+*{
+    box-sizing: border-box;
+    padding: 0%;
+    margin: 0;
+}
+body{
+    background-image: -webkit-linear-gradient(45deg, #9bf3bc 50%, #E4E9FD 50%);
+    font-family: "Montserrat";
+    min-height: 100%;
+}
+span, cite{
+    padding: 8px;
+    padding-left: 0;
+    font-family: "Quicksand", sans-serif;
+}
+h3 {
+    margin: 0;
+    margin-bottom: 5px;
+}
+a{
+    color: #000 !important;
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: none;
+    color: #000;
+}
+/* Navbar */
+nav{
+    background: #daf0e2;
+    opacity: 0.7;
+    position: relative;
+    z-index: 2;
+}
+nav:hover{
+    background: #daf0e2;
+    opacity: 1;
+}
+/* Search Box */
+.search{
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 0.3125rem;
+}
+/* Posts */
+.card-panel p{
+    font-family: "Nunito", "san-serif";
+    font-size: large;
+}
+/* Create Post */
+.contact.createpost{
+    padding: 20px;
+}
+/* Sign In / Sign Up */
+.sign-up-in {
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 200px;
+}
+div.sign-up-in .card-panel{
+    padding: 20px;
+}
+/* Footer */
+.footer-container{
+    padding-top: 100px;
+    width: 90%;
+    margin: 25px auto;
+    text-align: center;
+}
+.contact{
+    margin: 20px auto;
+    text-align: center;
+}
+.newsletterbtn{
+    display: block;
+}
+.terms{
+margin-top: 10px;
+}
+.terms p{
+    text-align: center;
+    margin: 25px auto;
+    font-weight: bold;
+}
+.copyright{
+    text-align: center;
+    margin: 0;
+}
+#dropdown1{
+    margin-top: 25px !important;
+}
+
+/* Cms */
+.inside-wrapper{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-gap: 3px 5px;
+    justify-content: top;
+}
+.dashboard-parts {
+    border: 2px solid gray;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.dashboard-parts h4{
+    padding: 1px;
+    margin: 0;
+    background-color: #9bf3bc;
+    box-shadow: 1px 1px 1px 1px;
+}
+.dashboard-statistics {
+    border: 3px solid #444444;
+
+}
+.dashboard-info{
+    border: 3px solid #444444;
+}
+.dashboard-latest-users{
+    border: 3px solid #444444;
+}

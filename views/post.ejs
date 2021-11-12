@@ -1,0 +1,27 @@
+<%- include("./components/header.ejs") -%> <%-
+include("./components/navbar.ejs") -%>
+<div class="container">
+  <div class="card-panel">
+    <div class="post">
+      <h4><%=post.title%></h4>
+      <hr />
+      <p><%= post.body%></p>
+      <div class="post-info right-align">
+        <cite class="post-time">On: <%= post.createdAt%> </cite>
+      </div>
+    </div>
+    <div class="post-feedback">
+      <span><%= post.metaData.comments.number%> Comment(s) </span>
+      <span><%= post.metaData.likes%> Likes </span>
+      <span><%= post.metaData.disLikes%> Dislikes</span>
+      <form action="/comment" method="POST">
+        <div class="input-field col l6 s12">
+          <input id="email_inline" type="email" class="validate" />
+          <label for="email_inline">Comment on post</label>
+        </div>
+        <button class="btn btn-outline-success" type="submit">Comment</button>
+      </form>
+    </div>
+  </div>
+</div>
+<%- include("./components/footer.ejs") -%>

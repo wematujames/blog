@@ -1,0 +1,43 @@
+<%- include("./components/header.ejs") -%>
+<%- include("./components/navbar.ejs") -%>
+<div class="container sign-up-in">
+    <div class="row">
+        <div class="col l3 s12"></div>
+        <div class="col l6 s12 card-panel">
+                <i class="material-icons large">border_color</i>
+                <h6> <b>Sign Up</b> </h6>
+                <form action="/signup" method="POST">
+                    <div class="input-field col l6 s12">
+                        <input id="email_inline" type="email" class="validate">
+                        <label for="email_inline">First Name</label>
+                    </div>  
+                    <div class="input-field col l6 s12">
+                        <input id="email_inline" type="email" class="validate">
+                        <label for="email_inline">Last Name</label>
+                    </div>   
+                    <div class="row">
+                        <div class="input-field col s12">
+                          <input id="email" type="email" class="validate">
+                          <label for="email">Email</label>
+                        </div>
+                      </div>
+                    <div class="input-field s12">
+                        <input id="email_inline" type="email" class="validate">
+                        <label for="email_inline">Password</label>
+                    </div>  
+                    <div class="input-field s12">
+                        <input id="email_inline" type="email" class="validate">
+                        <label for="email_inline">Confirm Password</label>
+                    </div>   
+                    <a class="waves-effect waves-light btn">Sign Up</a>
+                </form>
+            </div>
+        <div class="col l3 s12"></div>
+    </div>
+    <div class="for-reminder">
+        <p>Already have an account? 
+            <a href="/signin">Sign In</a>
+        </p>
+    </div>
+</div>
+<%- include("./components/footer.ejs") -%>

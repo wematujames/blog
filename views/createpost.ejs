@@ -1,0 +1,35 @@
+<%- include("./components/header.ejs") -%>
+<%- include("./components/navbar.ejs") -%>
+<div class="container sign-up-in">
+  <div class="row">
+    <div class="col l1 s12"></div>
+    <div class="col l10 s12 card-panel">
+      <i class="material-icons small">border_color</i>
+      <h6> <b>Create New Post</b> </h6>
+
+      <form action="/posts/create" method="POST">
+        <div class="row">
+          <div class="input-field col s12">
+            <input name="authorName" id="input_name" type="text" autocomplete="on">
+            <label for="input_name">Name</label>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input name="postTitle" id="input_text" type="text" autocomplete="on">
+              <label for="input_text">Post Title</label>
+            </div>
+            
+            <div class="input-field col s12">
+              <textarea name="postContent" id="textarea2" class="materialize-textarea" autocomplete="on"></textarea>
+              <label for="textarea2">Post Content</label>
+            </div>
+            <button class="waves-effect waves-light btn" type="submit">Publish</button>
+          </div>
+        </form>
+
+        <div class="col l1 s12"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<%- include("./components/footer") -%>

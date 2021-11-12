@@ -1,0 +1,29 @@
+<% posts.forEach((post)=> { %>
+    <div class="card-panel hoverable">
+        <div class="post">
+            <h4 class="center"><%= post.title%></h4>
+            <hr>
+            <br>
+            <p class="justify">
+                <%= post.body.substring(0,500) %>
+                <span class="see-more">...</span><a class="see-more" href="/post/<%=post.postTitle.replace(/ /g, '-').replace(/[?=]/g, "");%>">See more</a>
+            </p>
+        </div>
+        <div class="post-info right-align">
+            <cite>By: <%= post.postInfo.authorName%> </cite><br>
+            <cite class="post-time">On: <%= post.createdAt%> </cite>  
+        </div>
+        <div class="post-feedback">
+            <span><%= post.metaData.comments.number%> Comment(s) </span>
+            <span><%= post.metaData.likes%> Likes </span>
+            <span><%= post.metaData.disLikes%> Dislikes</span>
+            <form action="/comment" method="POST">
+                <div class="input-field col l6 s12">
+                    <input id="email_inline" type="email" class="validate">
+                    <label for="email_inline">Comment on post</label>
+                </div> 
+                <button class="btn btn-outline-success" type="submit">Comment</button>
+            </form>
+        </div>
+    </div>
+    <%  }) %>

@@ -1,0 +1,29 @@
+<%- include("./components/header.ejs") -%>
+<%- include("./components/navbar.ejs") -%>
+<div class="container sign-up-in">
+    <div class="row">
+        <div class="col l3 s12"></div>
+        <div class="col l6 s12 card-panel">
+            <i class="material-icons large">account_circle</i>
+            <h6> <b>Sign In</b> </h6>
+            <form action="/signin" action="POST">
+                <div class="input-field s12">
+                    <input id="email_inline" type="email" class="validate">
+                    <label for="email_inline">Email</label>
+                </div>  
+                <div class="input-field s12">
+                    <input id="email_inline" type="password" class="validate">
+                    <label for="email_inline">Password</label>
+                </div>  
+                <a class="waves-effect waves-light btn">Sign In</a>
+            </form>
+        </div>
+        <div class="col l3 s12"></div>
+    </div>
+    <div class="for-reminder">
+        <p>Don't have an account? 
+            <a href="signup">Sign Up</a>
+        </p>
+    </div>
+</div>
+<%- include("./components/footer.ejs") -%>
