@@ -23,9 +23,9 @@ exports.getCreatePost = async (req, res, next) => {
 //route           GET /posts/
 //requireAuth     True
 exports.createPost = async (req, res, next) => {
-  console.log(req.body);
   //Create post
   const post = await Post.create(req.body);
+
   res.render("post", { post: post });
 };
 
