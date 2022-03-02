@@ -14,7 +14,7 @@ const postSchema = new mongoose.Schema(
 			type: String,
 			required: [true, "Please add a body to your post"]
 		},
-		authorId: {
+		author: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: "User"
 		},

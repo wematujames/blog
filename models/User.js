@@ -6,24 +6,28 @@ const userSchema = new mongoose.Schema(
 		firstName: {
 			type: String,
 			required: true,
-			maxlength: [50, "First name cannot be more than 50 characters"]
+			maxlength: [50, "First name cannot be more than 50 characters"],
+			trim: true
 		},
 		lastName: {
 			type: String,
 			required: true,
-			maxlength: [50, "Last name cannot be more than 50 characters"]
+			maxlength: [50, "Last name cannot be more than 50 characters"],
+			trim: true
 		},
-		userName: {
-			type: String,
-			required: true,
-			maxlength: [50, "Username cannot be more than 50 characters"]
-		},
+		// userName: {
+		// 	type: String,
+		// 	required: true,
+		// 	maxlength: [50, "Username cannot be more than 50 characters"],
+		// 	trim: true
+		// },
 		email: {
 			type: String,
 			match: [
 				/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
 				"Please enter a valid email address"
-			]
+			],
+			trim: true
 		},
 		password: {
 			type: String,
