@@ -12,11 +12,11 @@ const express = require("express"),
 		getPosts
 	} = require("../controllers/posts");
 
-router.use("/:postId/courses", commentsRouter);
+router.use("/:postId/comments", commentsRouter);
 
 router
 	.route("/")
-	.get(advRes(Post, { path: "comments" }), getPosts)
+	.get(advRes(Post, { path: "author" }), getPosts)
 	.post(protect, authorize("user", "admin"), createPost);
 
 router

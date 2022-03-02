@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
 //Make sure user is logged in
-exports.protect = asyncHandler(async (req, res, next) => {
+exports.protect = async (req, res, next) => {
 	let token;
 	if (
 		req.headers.authorization &&
@@ -31,7 +31,7 @@ exports.protect = asyncHandler(async (req, res, next) => {
 		const payload = jwt.verify(token, process.env.JWT_SECRET);
 		req.user = await User.findById(payload.id);
 		next();
-	} catch (error) {
+	} catch (err) {
 		console.log(err);
 		return next(
 			new ErrorResponse(
@@ -41,7 +41,7 @@ exports.protect = asyncHandler(async (req, res, next) => {
 			)
 		);
 	}
-});
+};
 
 //Authorize roles
 exports.authorize =

@@ -18,6 +18,18 @@ const postSchema = new mongoose.Schema(
 			type: mongoose.Schema.Types.ObjectId,
 			ref: "User"
 		},
+		pictures: {
+			photo: {
+				type: String
+			},
+			description: {
+				type: String,
+				maxlength: [
+					100,
+					"Picture description cannot be more than 100 characters"
+				]
+			}
+		},
 		likes: {
 			type: Number,
 			default: 0

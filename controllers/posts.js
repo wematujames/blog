@@ -31,7 +31,11 @@ exports.createPost = asyncHandler(async (req, res, next) => {
 //Route                     //GET /api/v1/posts/:id
 //Require Auth              //False
 exports.getPost = asyncHandler(async (req, res, next) => {
-	const post = await Post.findById(req.params.id);
+	const post = await Post.findById(req.params.id)
+		.populate({
+			path: "author"
+		})
+		.populate({ path: "comments" });
 
 	if (!Post) {
 		return next(
@@ -55,7 +59,7 @@ exports.getPost = asyncHandler(async (req, res, next) => {
 exports.updatePost = asyncHandler(async (req, res, next) => {
 	let post = await Post.findById(req.params.id);
 
-	if (!Post) {
+	if (!post) {
 		return next(
 			new ErrorResponse(
 				404,
@@ -66,7 +70,7 @@ exports.updatePost = asyncHandler(async (req, res, next) => {
 	}
 
 	//Make sure user is the owner of Post
-	if (Post.user.toString() !== req.user.id) {
+	if (post.author.toString() !== req.user.id) {
 		return next(
 			new ErrorResponse(
 				401,
@@ -92,9 +96,9 @@ exports.updatePost = asyncHandler(async (req, res, next) => {
 //Route                     //DELETE /api/v1/Posts/:id
 //Require Auth              //True
 exports.deletePost = asyncHandler(async (req, res, next) => {
-	let Post = await Post.findById(req.params.id);
+	let post = await Post.findById(req.params.id);
 
-	if (!Post) {
+	if (!post) {
 		return next(
 			new ErrorResponse(
 				404,
@@ -105,7 +109,7 @@ exports.deletePost = asyncHandler(async (req, res, next) => {
 	}
 
 	//Make sure user is the owner of Post
-	if (Post.user.toString() !== req.user.id) {
+	if (post.author.toString() !== req.user.id) {
 		return next(
 			new ErrorResponse(
 				401,

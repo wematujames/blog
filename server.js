@@ -15,11 +15,14 @@ app.use(express.urlencoded({ extended: true })); //accept form data
 app.use(express.json()); // accept json data
 
 //Routes
-app.use("/", require("./routes")); //main page / documentation
-app.use("/", require("./routes/auth")); // authourization routes
-app.use("/users", require("./routes/users")); // admin users crud routes
-app.use("/posts", require("./routes/posts")); // posts routes
-app.use("/comments", require("./routes/comments")); //comments routes
+// app.use("/", require("./routes")); //main page / documentation
+app.use("/api/v1/auth", require("./routes/auth")); // authourization routes
+app.use("/api/v1/auth/users", require("./routes/users")); // admin users crud routes
+app.use("/api/v1/posts", require("./routes/posts")); // posts routes
+app.use("/api/v1/comments", require("./routes/comments")); //comments routes
+
+//Custom error handler
+app.use(require("./middleware/errorHandler"));
 
 //start server
 app.listen(process.env.PORT || 5000, () => {

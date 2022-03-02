@@ -7,26 +7,31 @@ const Comment = require("../models/Comment"),
 //Route                     //GET /api/v1/posts/:postId/comments
 //Require Auth              //False
 exports.getCommentsForPost = asyncHandler(async (req, res, next) => {
-	res.status(200).json(res.advRes);
+	if (req.params.postId) {
+		const comments = await Comment.find({ post: req.params.postId });
+		res.status(200).json({
+			success: true,
+			comments
+		});
+	} else res.status(200).json(res.advRes);
 });
 
 //Desc                      //Create a comment
 //Route                     //POST /api/v1/posts/:postId/comments
 //Require Auth              //True
 exports.createComment = asyncHandler(async (req, res, next) => {
-	res.send("route hit");
-	//Add bootcamp and user identifiers for course
-	// req.body.post = req.params.postId;
-	// req.body.user = req.user.id;
+	// Add bootcamp and user identifiers for course
+	req.body.post = req.params.postId;
+	req.body.user = req.user.id;
 
-	// //Create course for bootcamp
-	// const comment = await Comment.create(req.body);
+	//Create course for bootcamp
+	const comment = await Comment.create(req.body);
 
-	// res.status(201).json({
-	// 	success: true,
-	// 	msg: "Comment created successfully",
-	// 	comment
-	// });
+	res.status(201).json({
+		success: true,
+		msg: "Comment created successfully",
+		comment
+	});
 });
 
 //Desc                      //Update a comment
