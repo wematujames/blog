@@ -1,34 +1,63 @@
-const User = require("../models/User");
+const User = require("../models/User"),
+	asyncHandler = require("../middleware/asyncHandler");
 
-//desc            get register page
-//route           GET /users/register
-//requireAuth     False
-exports.getRegister = (req, res, next) => {
-  res.render("signup");
-};
+//Desc                      //Get all users
+//Route                     //GET /api/v1/auth/users
+//Require Auth              //True
+exports.getUsers = asyncHandler(async (req, res, next) => {
+	res.status(200).json(res.advRes);
+});
 
-//desc            Register user
-//route           Post /users/register
-//requireAuth     False
-exports.registerUser = async (req, res, next) => {
-  //Create user
-  const user = await User.create(red.body);
+//Desc                      //Create a user
+//Route                     //POST /api/v1/auth/users
+//Require Auth              //True
+exports.createUser = asyncHandler(async (req, res, next) => {
+	const user = await User.create(req.body);
 
-  res.redirect("/");
-};
+	res.status(201).json({
+		success: true,
+		msg: "User created",
+		data: user
+	});
+});
 
-//desc            get sign in page
-//route           GET /users/signin
-//requireAuth     False
-exports.getSignIn = (req, res, next) => {
-  res.render("signin");
-};
+//Desc                      //Get a user
+//Route                     //GET /api/v1/auth/users/:id
+//Require Auth              //True
+exports.getUser = asyncHandler(async (req, res, next) => {
+	const user = await User.findById(req.params.id);
 
-//desc            get sign in page
-//route           GET /users/signin
-//requireAuth     False
-exports.signInUser = (req, res, next) => {
-  //Check if user exists
+	res.status(200).json({
+		success: true,
+		data: user
+	});
+});
 
-  res.render("/");
-};
+//Desc                      //Update a user
+//Route                     //PUT /api/v1/auth/users/:id
+//Require Auth              //True
+exports.updateUser = asyncHandler(async (req, res, next) => {
+	const user = await User.findByIdAndUpdate(req.params.id, req.body, {
+		new: true,
+		runValidators: true
+	});
+
+	res.status(200).json({
+		success: true,
+		msg: "User update successful",
+		data: user
+	});
+});
+
+//Desc                      //Delte a user
+//Route                     //DELETE /api/v1/auth/users/:id
+//Require Auth              //True
+exports.deleteUser = asyncHandler(async (req, res, next) => {
+	const user = await User.findByIdAndDelete(req.params.id);
+
+	res.status(200).json({
+		success: true,
+		msg: "User successfully deleted",
+		data: {}
+	});
+});
