@@ -1,8 +1,6 @@
 const Post = require("../models/Post"),
 	ErrorResponse = require("../utils/ErrorResponse"),
-	asyncHandler = require("../middleware/asyncHandler"),
-	Comment = require("../models/Comment"),
-	path = require("path");
+	asyncHandler = require("../middleware/asyncHandler");
 
 //Desc                      //Get all Posts
 //Route                     //GET /api/v1/posts
@@ -39,11 +37,7 @@ exports.getPost = asyncHandler(async (req, res, next) => {
 
 	if (!Post) {
 		return next(
-			new ErrorResponse(
-				404,
-				`Post not found`,
-				`No Post with specified id: ${req.params.id}`
-			)
+			new ErrorResponse(404, `Post not found`, `No Post with specified id: ${req.params.id}`)
 		);
 	}
 

@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const ejs = require("ejs");
 const colors = require("colors");
+const cors = require("cors");
 const connectDB = require("./config/connecDB");
 
 //connect to DB
@@ -13,6 +14,7 @@ app.use(express.static("Public")); // Set static folder
 app.set("view engine", "ejs"); //Set view engine
 app.use(express.urlencoded({ extended: true })); //accept form data
 app.use(express.json()); // accept json data
+app.use(cors());
 
 //Routes
 // app.use("/", require("./routes")); //main page / documentation
@@ -26,7 +28,5 @@ app.use(require("./middleware/errorHandler"));
 
 //start server
 app.listen(process.env.PORT || 5000, () => {
-	console.log(
-		`Server started in ${process.env.NODE_ENV} on port ${process.env.PORT}`
-	);
+	console.log(`Server started in ${process.env.NODE_ENV} on port ${process.env.PORT}`);
 });
