@@ -35,5 +35,8 @@
 	"bugs": {
 		"url": "https://github.com/wematujames/blog/issues"
 	},
-	"homepage": "https://github.com/wematujames/blog#readme"
+	"homepage": "https://github.com/wematujames/blog#readme",
+	"devDependencies": {
+		"nodemon": "^2.0.15"
+	}
 }

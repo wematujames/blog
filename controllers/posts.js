@@ -122,34 +122,8 @@ exports.deletePost = asyncHandler(async (req, res, next) => {
 	});
 });
 
-//Desc                      //Get Post within radius of zipcode
-//Route                     //GET /api/v1/Posts/raduis/:zipcode/:distance
-//Require Auth              //False
-// exports.getPostWithRadius = asyncHandler(async (req, res, next) => {
-// 	const { zipcode, distance } = req.params;
-
-// 	const loc = await geocoder.geocode(zipcode);
-
-// 	const radius = distance / 3963;
-
-// 	const lon = loc[0].longitude;
-// 	const lat = loc[0].latitude;
-
-// 	const Posts = await Post.find({
-// 		location: {
-// 			$geoWithin: { $centerSphere: [[lon, lat], radius] }
-// 		}
-// 	});
-
-// 	res.status(200).json({
-// 		success: true,
-// 		count: Posts.length,
-// 		data: Posts
-// 	});
-// });
-
-//Desc                      //Delete a Post
-//Route                     //DELETE /api/v1/Posts/:id/photo
+//Desc                      //Add post to photo
+//Route                     //Upload photo for post /api/v1/Posts/:id/photo
 //Require Auth              //True
 // exports.PostPhotoUpload = asyncHandler(async (req, res, next) => {
 // 	let Post = await Post.findById(req.params.id);

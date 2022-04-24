@@ -19,7 +19,6 @@ exports.registerUser = asyncHandler(async (req, res, next) => {
 //Require Auth              //False
 exports.loginUser = asyncHandler(async (req, res, next) => {
 	const { email, password } = req.body;
-
 	//Check if email and password were provided
 	if (!email || !password) {
 		return next(
