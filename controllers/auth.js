@@ -10,6 +10,12 @@ const sendMail = require("../utils/sendMail"),
 //Route                     //POST /api/v1/auth/register
 //Require Auth              //False
 exports.registerUser = asyncHandler(async (req, res, next) => {
+	for (let key in req.body) {
+		if (req.body[key] === "") {
+			return next(new ErrorResponse(`Please fill in all fields`, 400));
+		}
+	}
+
 	const user = await await User.create(req.body);
 	
 	sendTokenResponse(201, user, res, "Registration Successful");
@@ -132,7 +138,7 @@ exports.resetPassword = asyncHandler(async (req, res, next) => {
 		passwordResetToken: resetToken,
 		resetPasswordTokenExpiration: { $gt: Date.now() }
 	});
-	console.log(user);
+	
 	//Validate password reset token and validate user
 	if (!user) {
 		return next(

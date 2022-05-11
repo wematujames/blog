@@ -17,12 +17,6 @@ const userSchema = new mongoose.Schema(
 			maxlength: [50, "Last name cannot be more than 50 characters"],
 			trim: true
 		},
-		// userName: {
-		// 	type: String,
-		// 	required: true,
-		// 	maxlength: [50, "Username cannot be more than 50 characters"],
-		// 	trim: true
-		// },
 		email: {
 			type: String,
 			match: [
@@ -63,7 +57,7 @@ userSchema.virtual("posts", {
 	justOne: false
 });
 
-//enable post virtual for user
+//enable stats virtual for user
 userSchema.virtual("stats", {
 	ref: "UserStats",
 	localField: "_id",
@@ -96,7 +90,7 @@ userSchema.methods.matchPassword = async function (enteredPassword) {
 userSchema.methods.passResetToken = function () {
 	const resetToken = crypto.randomBytes(20).toString("hex");
 
-	//hash and store reset token in Db
+	//hash and store reset token in DB
 	this.passwordResetToken = crypto
 		.createHash("sha256")
 		.update(resetToken)
