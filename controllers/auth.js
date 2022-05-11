@@ -1,5 +1,6 @@
 const sendMail = require("../utils/sendMail"),
 	User = require("../models/User"),
+	UserStats = require("../models/UserStats"),
 	crypto = require("crypto"),
 	ErrorResponse = require("../utils/ErrorResponse"),
 	asyncHandler = require("../middleware/asyncHandler"),
@@ -10,7 +11,7 @@ const sendMail = require("../utils/sendMail"),
 //Require Auth              //False
 exports.registerUser = asyncHandler(async (req, res, next) => {
 	const user = await await User.create(req.body);
-
+	
 	sendTokenResponse(201, user, res, "Registration Successful");
 });
 
@@ -61,7 +62,9 @@ exports.loginUser = asyncHandler(async (req, res, next) => {
 //Route                     //POST /api/v1/auth/me
 //Require Auth              //True
 exports.getMe = asyncHandler(async (req, res, next) => {
-	const user = await User.findById(req.user.id);
+	const user = await User.findById(req.user.id).populate({
+		path: "stats"
+	});
 
 	res.status(200).json({
 		succees: true,

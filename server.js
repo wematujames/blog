@@ -19,9 +19,10 @@ app.use(cors());
 //Routes
 // app.use("/", require("./routes")); //main page / documentation
 app.use("/api/v1/auth", require("./routes/auth")); // authourization routes
-app.use("/api/v1/auth/users", require("./routes/users")); // admin users crud routes
+app.use("/api/v1/users", require("./routes/users")); // admin users crud routes
 app.use("/api/v1/posts", require("./routes/posts")); // posts routes
 app.use("/api/v1/comments", require("./routes/comments")); //comments routes
+app.use("/api/v1/useraudit", require("./routes/useraudit")); //comments routes
 
 //Custom error handler
 app.use(require("./middleware/errorHandler"));

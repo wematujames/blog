@@ -1,5 +1,7 @@
-const mongoose = require("mongoose");
-(bcrypt = require("bcryptjs")), (jwt = require("jsonwebtoken"));
+const mongoose = require("mongoose"),
+	bcrypt = require("bcryptjs"),
+	jwt = require("jsonwebtoken"),
+	UserStats = require("./UserStats");
 
 const userSchema = new mongoose.Schema(
 	{
@@ -57,8 +59,16 @@ const userSchema = new mongoose.Schema(
 userSchema.virtual("posts", {
 	ref: "Post",
 	localField: "_id",
-	foreignField: "userId",
+	foreignField: "author",
 	justOne: false
+});
+
+//enable post virtual for user
+userSchema.virtual("stats", {
+	ref: "UserStats",
+	localField: "_id",
+	foreignField: "userId",
+	justOne: true
 });
 
 //Encrypt user password
@@ -96,4 +106,8 @@ userSchema.methods.passResetToken = function () {
 
 	return resetToken;
 };
+
+userSchema.post("save", function () {
+	UserStats.create({ userId: this.id })
+});
 module.exports = new mongoose.model("User", userSchema);
